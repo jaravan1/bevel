@@ -78,7 +78,8 @@
     name: "{{ playbook_dir }}/../../shared/configuration/roles/check/setup"
   vars:
     vault_field: "{{ component_name }}-CA.key"
-    vault_path: "{{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/ca"
+    # vault_path: "{{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/ca"
+    vault_path: "{{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/ca"
     check: "crypto_materials"
 
 # Wait for admin tls exists in vault.
@@ -87,7 +88,8 @@
     name: "{{ playbook_dir }}/../../shared/configuration/roles/check/setup"
   vars:
     vault_field: "client.key"
-    vault_path: "{{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/users/admin/tls"
+    # vault_path: "{{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/users/admin/tls"
+    vault_path: "{{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/users/admin/tls"
     check: "crypto_materials"
 
 # Wait for orderers tls exists in vault.
@@ -97,7 +99,8 @@
   vars:
     vault_field: "server.key"
     # vault_path: "{{ vault.secret_path | default('secretv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/orderers/{{ orderer.name }}.{{ component_name}}/tls"
-    vault_path: "{{ vault.secret_path | default('secretv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/orderers/{{ orderer.name }}.{{ component_name }}/tls"
+    # vault_path: "{{ vault.secret_path | default('secretv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/orderers/{{ orderer.name }}.{{ component_name }}/tls"
+    vault_path: "{{ vault.secret_path | default('secretv2') }}/data/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/orderers/{{ orderer.name }}.{{ component_name }}/tls"
     check: "crypto_materials"
   loop: "{{ item.services.orderers }}"
   loop_control:
