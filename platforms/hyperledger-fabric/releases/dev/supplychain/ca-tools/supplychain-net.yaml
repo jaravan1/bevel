@@ -43,14 +43,22 @@ spec:
       role: vault-role
       address: http://vault.vault:8200
       authpath: localsupplychain
-      secretusers: secretsv2/data/supplychain/ordererOrganizations/supplychain-net/users
-      secretorderer: secretsv2/data/supplychain/ordererOrganizations/supplychain-net/orderers
-      secretpeer: secretsv2/data/supplychain/ordererOrganizations/supplychain-net/peers
-      secretpeerorderertls: secretsv2/data/supplychain/ordererOrganizations/supplychain-net/orderer/tls
-      secretcert: secretsv2/data/supplychain/ordererOrganizations/supplychain-net/ca?ca.supplychain-net-cert.pem
-      secretkey: secretsv2/data/supplychain/ordererOrganizations/supplychain-net/ca?supplychain-net-CA.key
-      secretcouchdb: secretsv2/data/supplychain/credentials/supplychain-net/couchdb/supplychain
-      secretconfigfile: secretsv2/data/supplychain/ordererOrganizations/supplychain-net/msp/config
+      # secretusers: secretsv2/data/supplychain/ordererOrganizations/supplychain-net/users
+      # secretorderer: secretsv2/data/supplychain/ordererOrganizations/supplychain-net/orderers
+      # secretpeer: secretsv2/data/supplychain/ordererOrganizations/supplychain-net/peers
+      # secretpeerorderertls: secretsv2/data/supplychain/ordererOrganizations/supplychain-net/orderer/tls
+      # secretcert: secretsv2/data/supplychain/ordererOrganizations/supplychain-net/ca?ca.supplychain-net-cert.pem
+      # secretkey: secretsv2/data/supplychain/ordererOrganizations/supplychain-net/ca?supplychain-net-CA.key
+      # secretcouchdb: secretsv2/data/supplychain/credentials/supplychain-net/couchdb/supplychain
+      # secretconfigfile: secretsv2/data/supplychain/ordererOrganizations/supplychain-net/msp/config
+      secretusers: secretsv2/supplychain/ordererOrganizations/supplychain-net/users
+      secretorderer: secretsv2/supplychain/ordererOrganizations/supplychain-net/orderers
+      secretpeer: secretsv2/supplychain/ordererOrganizations/supplychain-net/peers
+      secretpeerorderertls: secretsv2/supplychain/ordererOrganizations/supplychain-net/orderer/tls
+      secretcert: secretsv2/supplychain/ordererOrganizations/supplychain-net/ca?ca.supplychain-net-cert.pem
+      secretkey: secretsv2/supplychain/ordererOrganizations/supplychain-net/ca?supplychain-net-CA.key
+      secretcouchdb: secretsv2/supplychain/credentials/supplychain-net/couchdb/supplychain
+      secretconfigfile: secretsv2/supplychain/ordererOrganizations/supplychain-net/msp/config
       serviceaccountname: vault-auth
       type: hashicorp
       imagesecretname: regcred
