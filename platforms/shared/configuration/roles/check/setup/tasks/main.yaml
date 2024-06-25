@@ -49,10 +49,10 @@
   when: check == "git_credentials"
 
 # This task waits until certs are stored in vault.
-    # vault kv get -field={{ vault_field }} {{ vault_path }}
+    # echo {{ vault_field }} and {{ vault_path }}
 - name: Wait for certs to be created.
   shell: |
-    echo {{ vault_field }} and {{ vault_path }}
+    kubectl exec -i vault-0 -n vault -- env VAULT_TOKEN={{ vault.root_token }} vault kv get -field={{ vault_field }} {{ vault_path }}
   environment:
     VAULT_ADDR: "{{ vault.url }}"
     VAULT_TOKEN: "{{ vault.root_token }}"

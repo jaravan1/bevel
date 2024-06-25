@@ -32,9 +32,10 @@
   when: add_new_org == 'false'
 
 # Write genesis block to Vault
+    # vault kv put {{ org.vault.secret_path | default('secretsv2') }}/{{ org.name | lower }}/ordererOrganizations/{{ org.name }}-net/{{ channel_name }} {{ network.env.type }}GenesisBlock=@{{build_path}}/channel-artifacts/{{ channel_name }}.genesis.block.base64
 - name: "Write genesis block to Vault"  
   shell: |
-    vault kv put {{ org.vault.secret_path | default('secretsv2') }}/{{ org.name | lower }}/ordererOrganizations/{{ org.name }}-net/{{ channel_name }} {{ network.env.type }}GenesisBlock=@{{build_path}}/channel-artifacts/{{ channel_name }}.genesis.block.base64
+    kubectl exec -i vault-0 -n vault -- env VAULT_TOKEN={{ org.vault.root_token }} vault kv put {{ org.vault.secret_path | default('secretsv2') }}/{{ org.name | lower }}/ordererOrganizations/{{ org.name }}-net/{{ channel_name }} {{ network.env.type }}GenesisBlock=@{{build_path}}/channel-artifacts/{{ channel_name }}.genesis.block.base64
   environment:
     VAULT_ADDR: "{{ org.vault.url }}"
     VAULT_TOKEN: "{{ org.vault.root_token }}"
