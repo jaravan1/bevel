@@ -27,10 +27,10 @@ spec:
       role: vault-role
       address: {{ vault.url }}
       authpath: {{ item.k8s.cluster_id | default('')}}{{ network.env.type }}{{ item.name | lower }}
-      # secretcryptoprefix: {{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component }}-net/ca
-      # secretcredentialsprefix: {{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/credentials/{{ component }}-net/ca/{{ component }}
-      secretcryptoprefix: {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component }}-net/ca
-      secretcredentialsprefix: {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/credentials/{{ component }}-net/ca/{{ component }}
+      secretcryptoprefix: {{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component }}-net/ca
+      secretcredentialsprefix: {{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/credentials/{{ component }}-net/ca/{{ component }}
+      # secretcryptoprefix: {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component }}-net/ca
+      # secretcredentialsprefix: {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/credentials/{{ component }}-net/ca/{{ component }}
       serviceaccountname: vault-auth
       type: {{ vault.type | default("hashicorp") }}
 {% if network.docker.username is defined and network.docker.password is defined %}

@@ -59,22 +59,22 @@ spec:
       role: vault-role
       address: {{ vault.url }}
       authpath: {{ item.k8s.cluster_id | default('')}}{{ network.env.type }}{{ item.name | lower }}
-      # secretusers: {{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/users
-      # secretorderer: {{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/orderers
-      # secretpeer: {{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/peers
-      # secretpeerorderertls: {{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/orderer/tls
-      # secretcert: {{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name | e }}/ca?ca.{{ component_name | e }}-cert.pem
-      # secretkey: {{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name | e }}/ca?{{ component_name | e }}-CA.key
-      # secretcouchdb: {{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/credentials/{{ component_name }}/couchdb/{{ org_name }}
-      # secretconfigfile: {{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name | e }}/msp/config
-      secretusers: {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/users
-      secretorderer: {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/orderers
-      secretpeer: {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/peers
-      secretpeerorderertls: {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/orderer/tls
-      secretcert: {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name | e }}/ca?ca.{{ component_name | e }}-cert.pem
-      secretkey: {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name | e }}/ca?{{ component_name | e }}-CA.key
-      secretcouchdb: {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/credentials/{{ component_name }}/couchdb/{{ org_name }}
-      secretconfigfile: {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name | e }}/msp/config
+      secretusers: {{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/users
+      secretorderer: {{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/orderers
+      secretpeer: {{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/peers
+      secretpeerorderertls: {{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/orderer/tls
+      secretcert: {{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name | e }}/ca?ca.{{ component_name | e }}-cert.pem
+      secretkey: {{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name | e }}/ca?{{ component_name | e }}-CA.key
+      secretcouchdb: {{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/credentials/{{ component_name }}/couchdb/{{ org_name }}
+      secretconfigfile: {{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name | e }}/msp/config
+      # secretusers: {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/users
+      # secretorderer: {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/orderers
+      # secretpeer: {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/peers
+      # secretpeerorderertls: {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/orderer/tls
+      # secretcert: {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name | e }}/ca?ca.{{ component_name | e }}-cert.pem
+      # secretkey: {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name | e }}/ca?{{ component_name | e }}-CA.key
+      # secretcouchdb: {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/credentials/{{ component_name }}/couchdb/{{ org_name }}
+      # secretconfigfile: {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name | e }}/msp/config
       serviceaccountname: vault-auth
       type: {{ vault.type | default("hashicorp") }}
 {% if network.docker.username is defined and network.docker.password is defined %}

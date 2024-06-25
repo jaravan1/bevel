@@ -96,7 +96,8 @@
     name: "{{ playbook_dir }}/../../shared/configuration/roles/check/setup"
   vars:
     vault_field: "server.key"
-    vault_path: "{{ vault.secret_path | default('secretv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/orderers/{{ orderer.name }}.{{ component_name}}/tls"
+    # vault_path: "{{ vault.secret_path | default('secretv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/orderers/{{ orderer.name }}.{{ component_name}}/tls"
+    vault_path: "{{ vault.secret_path | default('secretv2') }}/{{ item.name | lower }}/{{ component_type }}Organizations/{{ component_name }}/orderers/{{ orderer.name }}.{{ component_name }}/tls"
     check: "crypto_materials"
   loop: "{{ item.services.orderers }}"
   loop_control:
