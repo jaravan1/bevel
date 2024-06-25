@@ -27,10 +27,10 @@ spec:
       role: vault-role
       address: http://vault.vault:8200
       authpath: localcarrier
-      # secretcryptoprefix: secretsv2/data/carrier/peerOrganizations/carrier-net/ca
-      # secretcredentialsprefix: secretsv2/data/carrier/credentials/carrier-net/ca/carrier
-      secretcryptoprefix: secretsv2/carrier/peerOrganizations/carrier-net/ca
-      secretcredentialsprefix: secretsv2/carrier/credentials/carrier-net/ca/carrier
+      secretcryptoprefix: secretsv2/data/carrier/peerOrganizations/carrier-net/ca
+      secretcredentialsprefix: secretsv2/data/carrier/credentials/carrier-net/ca/carrier
+      # secretcryptoprefix: secretsv2/carrier/peerOrganizations/carrier-net/ca
+      # secretcredentialsprefix: secretsv2/carrier/credentials/carrier-net/ca/carrier
       serviceaccountname: vault-auth
       type: hashicorp
       imagesecretname: regcred
