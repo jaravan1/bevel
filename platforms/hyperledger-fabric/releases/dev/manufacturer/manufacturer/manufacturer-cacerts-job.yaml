@@ -27,8 +27,10 @@ spec:
       role: vault-role
       address: http://vault.vault:8200
       authpath: localmanufacturer
-      secretcryptoprefix: secretsv2/data/manufacturer/peerOrganizations/manufacturer-net/ca
-      secretcredentialsprefix: secretsv2/data/manufacturer/credentials/manufacturer-net/ca/manufacturer
+      # secretcryptoprefix: secretsv2/data/manufacturer/peerOrganizations/manufacturer-net/ca
+      # secretcredentialsprefix: secretsv2/data/manufacturer/credentials/manufacturer-net/ca/manufacturer
+      secretcryptoprefix: secretsv2/manufacturer/peerOrganizations/manufacturer-net/ca
+      secretcredentialsprefix: secretsv2/manufacturer/credentials/manufacturer-net/ca/manufacturer
       serviceaccountname: vault-auth
       type: hashicorp
       imagesecretname: regcred
