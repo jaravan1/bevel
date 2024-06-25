@@ -35,7 +35,7 @@
     # vault kv put {{ org.vault.secret_path | default('secretsv2') }}/{{ org.name | lower }}/ordererOrganizations/{{ org.name }}-net/{{ channel_name }} {{ network.env.type }}GenesisBlock=@{{build_path}}/channel-artifacts/{{ channel_name }}.genesis.block.base64
 - name: "Write genesis block to Vault"  
   shell: |
-    localGenesisBlock=@{{build_path}}/channel-artifacts/{{ channel_name }}.genesis.block.base64
+    localGenesisBlock="$(cat {{build_path}}/channel-artifacts/{{ channel_name }}.genesis.block.base64)"
     kubectl exec -i vault-0 -n vault -- env VAULT_TOKEN={{ org.vault.root_token }} vault kv put {{ org.vault.secret_path | default('secretsv2') }}/{{ org.name | lower }}/ordererOrganizations/{{ org.name }}-net/{{ channel_name }} {{ network.env.type }}GenesisBlock="$localGenesisBlock"
   environment:
     VAULT_ADDR: "{{ org.vault.url }}"
