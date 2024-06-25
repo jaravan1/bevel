@@ -22,7 +22,7 @@
 #     vault kv get -field=cacerts {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/peerOrganizations/{{ component_name }}/peers/{{ peer.name }}.{{ component_name }}/msp > {{ peer.certificate }}
 - name: Get msp cacerts
   shell: |
-    kubectl exec --stdin=true --tty=true vault-0 -n vault -- env VAULT_TOKEN={{ vault.root_token }} vault kv get -field=cacerts {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/peerOrganizations/{{ component_name }}/peers/{{ peer.name }}.{{ component_name }}/msp > {{ peer.certificate }}
+    kubectl exec -i vault-0 -n vault -- env VAULT_TOKEN={{ vault.root_token }} vault kv get -field=cacerts {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/peerOrganizations/{{ component_name }}/peers/{{ peer.name }}.{{ component_name }}/msp > {{ peer.certificate }}
   environment:
     VAULT_ADDR: "{{ vault.url }}"
     VAULT_TOKEN: "{{ vault.root_token }}"
