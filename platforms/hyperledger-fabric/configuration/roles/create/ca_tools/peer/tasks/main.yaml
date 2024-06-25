@@ -184,7 +184,7 @@
 # Fetch msp admincerts from vault
 - name: Fetch the msp admincerts from vault
   shell: |
-    vault kv get -field=admincerts {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/peerOrganizations/{{ component_name }}/users/admin/msp > Admin@{{ component_name }}-cert.pem
+    kubectl exec -i vault-0 -n vault -- env VAULT_TOKEN={{ vault.root_token }} vault kv get -field=admincerts {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/peerOrganizations/{{ component_name }}/users/admin/msp > Admin@{{ component_name }}-cert.pem
     mkdir -p ./build/crypto-config/peerOrganizations/{{ component_name }}/msp/admincerts/
     mv Admin@{{ component_name }}-cert.pem ./build/crypto-config/peerOrganizations/{{ component_name }}/msp/admincerts/
   environment:
@@ -194,7 +194,7 @@
 # Fetch msp cacerts from vault
 - name: Fetch the msp cacerts from vault
   shell: |
-    vault kv get -field=cacerts {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/peerOrganizations/{{ component_name }}/users/admin/msp > ca-{{ component_name }}-{{ item.external_url_suffix }}.pem
+    kubectl exec -i vault-0 -n vault -- env VAULT_TOKEN={{ vault.root_token }} vault kv get -field=cacerts {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/peerOrganizations/{{ component_name }}/users/admin/msp > ca-{{ component_name }}-{{ item.external_url_suffix }}.pem
     mkdir -p ./build/crypto-config/peerOrganizations/{{ component_name }}/msp/cacerts/
     mv ca-{{ component_name }}-{{ item.external_url_suffix }}.pem ./build/crypto-config/peerOrganizations/{{ component_name }}/msp/cacerts/
   environment:
@@ -205,7 +205,7 @@
 # Fetch msp tlscacerts from vault
 - name: Fetch the msp tlscacerts from vault
   shell: |
-    vault kv get -field=tlscacerts {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/peerOrganizations/{{ component_name }}/users/admin/msp > ca-{{ component_name }}-{{ item.external_url_suffix }}.pem
+    kubectl exec -i vault-0 -n vault -- env VAULT_TOKEN={{ vault.root_token }} vault kv get -field=tlscacerts {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/peerOrganizations/{{ component_name }}/users/admin/msp > ca-{{ component_name }}-{{ item.external_url_suffix }}.pem
     mkdir -p ./build/crypto-config/peerOrganizations/{{ component_name }}/msp/tlscacerts/
     mv ca-{{ component_name }}-{{ item.external_url_suffix }}.pem ./build/crypto-config/peerOrganizations/{{ component_name }}/msp/tlscacerts/
   environment:
@@ -216,7 +216,7 @@
 # Fetch  msp cacerts from vault when proxy is none
 - name: Fetch the msp cacerts from vault
   shell: |
-    vault kv get -field=cacerts {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/peerOrganizations/{{ component_name }}/users/admin/msp > ca-{{ component_name }}-{{ item.services.ca.grpc.port }}.pem
+    kubectl exec -i vault-0 -n vault -- env VAULT_TOKEN={{ vault.root_token }} vault kv get -field=cacerts {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/peerOrganizations/{{ component_name }}/users/admin/msp > ca-{{ component_name }}-{{ item.services.ca.grpc.port }}.pem
     mkdir -p ./build/crypto-config/peerOrganizations/{{ component_name }}/msp/cacerts/
     mv ca-{{ component_name }}-{{ item.services.ca.grpc.port }}.pem ./build/crypto-config/peerOrganizations/{{ component_name }}/msp/cacerts/
   environment:
@@ -227,7 +227,7 @@
 # Fetch msp tlscacerts from vault when proxy is none
 - name: Fetch the msp tlscacerts from vault
   shell: |
-    vault kv get -field=tlscacerts {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/peerOrganizations/{{ component_name }}/users/admin/msp > ca-{{ component_name }}-{{ item.services.ca.grpc.port }}.pem
+    kubectl exec -i vault-0 -n vault -- env VAULT_TOKEN={{ vault.root_token }} vault kv get -field=tlscacerts {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/peerOrganizations/{{ component_name }}/users/admin/msp > ca-{{ component_name }}-{{ item.services.ca.grpc.port }}.pem
     mkdir -p ./build/crypto-config/peerOrganizations/{{ component_name }}/msp/tlscacerts/
     mv ca-{{ component_name }}-{{ item.services.ca.grpc.port }}.pem ./build/crypto-config/peerOrganizations/{{ component_name }}/msp/tlscacerts/
   environment:
@@ -238,7 +238,7 @@
 # Fetch msp config.yaml file from vault
 - name: Fetch msp config.yaml file from vault
   shell: |
-    vault kv get -field=configfile {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/peerOrganizations/{{ component_name }}/msp/config > config.yaml
+    kubectl exec -i vault-0 -n vault -- env VAULT_TOKEN={{ vault.root_token }} vault kv get -field=configfile {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/peerOrganizations/{{ component_name }}/msp/config > config.yaml
     mv config.yaml ./build/crypto-config/peerOrganizations/{{ component_name }}/msp/
   environment:
     VAULT_ADDR: "{{ vault.url }}"
