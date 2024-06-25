@@ -27,8 +27,10 @@ spec:
       role: vault-role
       address: http://vault.vault:8200
       authpath: localsupplychain
-      secretcryptoprefix: secretsv2/data/supplychain/ordererOrganizations/supplychain-net/ca
-      secretcredentialsprefix: secretsv2/data/supplychain/credentials/supplychain-net/ca/supplychain
+      # secretcryptoprefix: secretsv2/data/supplychain/ordererOrganizations/supplychain-net/ca
+      # secretcredentialsprefix: secretsv2/data/supplychain/credentials/supplychain-net/ca/supplychain
+      secretcryptoprefix: secretsv2/supplychain/ordererOrganizations/supplychain-net/ca
+      secretcredentialsprefix: secretsv2/supplychain/credentials/supplychain-net/ca/supplychain
       serviceaccountname: vault-auth
       type: hashicorp
       imagesecretname: regcred
