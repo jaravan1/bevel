@@ -6,9 +6,10 @@
 
 ---
 # This task checks if the vault path already exists
+    # vault auth list --format json | jq "to_entries[] | select(.value.restricted|not) | .key"
 - name: Check if Kubernetes-auth already created for Organization
   shell: |
-    vault auth list --format json | jq "to_entries[] | select(.value.restricted|not) | .key"
+    kubectl exec -i vault-0 -n vault -- env VAULT_TOKEN={{ vault.root_token }} vault auth list --format json | jq "to_entries[] | select(.value.restricted|not) | .key"
   environment:
     VAULT_ADDR: "{{ vault.url }}"
     VAULT_TOKEN: "{{ vault.root_token }}"
@@ -16,9 +17,10 @@
   when: check == "vault_auth"
 
 # This task checks if the vault-ro policy already exists
+    # vault policy read vault-crypto-{{ component_type }}-{{ component_name }}-ro
 - name: Check if policy exists
   shell: |
-    vault policy read vault-crypto-{{ component_type }}-{{ component_name }}-ro
+    kubectl exec -i vault-0 -n vault -- env VAULT_TOKEN={{ vault.root_token }} vault policy read vault-crypto-{{ component_type }}-{{ component_name }}-ro
   environment:
     VAULT_ADDR: "{{ vault.url }}"
     VAULT_TOKEN: "{{ vault.root_token }}"
@@ -63,9 +65,10 @@
   when: check == "crypto_materials"
 
 # This task check if certs exists in vault.
+    # vault kv get -field={{ vault_field }} {{ vault_path }}
 - name: check if certs exists in vault.
   shell: |
-    vault kv get -field={{ vault_field }} {{ vault_path }}
+    kubectl exec -i vault-0 -n vault -- env VAULT_TOKEN={{ vault.root_token }} vault kv get -field={{ vault_field }} {{ vault_path }}
   environment:
     VAULT_ADDR: "{{ vault.url }}"
     VAULT_TOKEN: "{{ vault.root_token }}"
