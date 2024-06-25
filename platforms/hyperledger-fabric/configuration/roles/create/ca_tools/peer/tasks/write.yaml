@@ -19,11 +19,10 @@
     - org_peer.name == peer.name
 
 # Get msp config.yaml file from vault
-    # vault kv get -field=cacerts {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/peerOrganizations/{{ component_name }}/peers/{{ peer.name }}.{{ component_name }}/msp > {{ peer.certificate }}
 
 - name: Get msp cacerts
   shell: |
-    vault kv get -field=cacerts {{ vault.secret_path | default('secretsv2') }}/data/{{ item.name | lower }}/peerOrganizations/{{ component_name }}/peers/{{ peer.name }}.{{ component_name }}/msp > {{ peer.certificate }}
+    vault kv get -field=cacerts {{ vault.secret_path | default('secretsv2') }}/{{ item.name | lower }}/peerOrganizations/{{ component_name }}/peers/{{ peer.name }}.{{ component_name }}/msp > {{ peer.certificate }}
   environment:
     VAULT_ADDR: "{{ vault.url }}"
     VAULT_TOKEN: "{{ vault.root_token }}"
