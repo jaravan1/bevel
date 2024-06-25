@@ -21,8 +21,7 @@ spec:
       serviceAccountName: vault-auth
       cluster:
         cloudNativeServices: false
-        # kubernetesUrl: {{ kubernetes_url }}
-        kubernetesUrl: "https://kubernetes.default.svc:443"
+        kubernetesUrl: {{ kubernetes_url }}
       vault:
         type: hashicorp
         role: vault-role
